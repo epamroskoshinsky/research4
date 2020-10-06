@@ -5,12 +5,12 @@ services:
   - docker
 
 before_install:
-  - docker build -t research/research4 -f Dockerfile.dev .
+  - docker build -t roskoshinsky/research4 -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true research/research4 npm run test
+  - docker run -e CI=true roskoshinsky/research4 npm run test
 
 after_success:
-  - docker build -t research/research4 .
+  - docker build -t roskoshinsky/research4 .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push research/research4
+  - docker push roskoshinsky/research4
